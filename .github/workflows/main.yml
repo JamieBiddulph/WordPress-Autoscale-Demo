@@ -26,6 +26,12 @@ jobs:
     - name: Copy files to s3
       run: |
        aws s3 cp release-latest.zip s3://demo-infastructure-code-blog/release-latest-zip
+       
+    - name: Trigger instance refresh
+      run: |
+       aws autoscaling start-instance-refresh \
+       --auto-scaling-group-name demo-infastructure \
+       --preferences '{"InstanceWarmup": 300, "MinHealthyPercentage": 50}'
       
       
     
