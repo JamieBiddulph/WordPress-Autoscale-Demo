@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Zip files
-      run: zip -r release-latest.zip .
+      run: zip -r release-latest.zip . -x ".git/*" ".github/*"
      
     - name: Set AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
